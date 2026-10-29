@@ -1,0 +1,13 @@
+# Ficheiros gerados para produção
+dist/
+
+# Configurações locais que podem conter credenciais
+.env
+.env.*
+!.env.example
+
+# Ficheiros do macOS
+.DS_Store
+
+/part1/tests/
+/part2/tests/
