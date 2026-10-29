@@ -37,11 +37,11 @@ const App = () => {
 
 const Course = ({ course }) => {
   console.log({course})
-  let i = 0, sum=0
-  for (; i < course.parts.length; i++) {
-    sum += course.parts[i].exercises
-  }
-
+  const sum = course.parts.reduce((accumulator, part) => {
+    console.log(accumulator)
+    return accumulator + part.exercises
+  },0)
+  console.log({sum})
   return (
     
     <div>
