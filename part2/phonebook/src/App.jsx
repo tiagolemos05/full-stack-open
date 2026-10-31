@@ -4,6 +4,7 @@ import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import axios from 'axios'
 import addPhone from './services/phones'
+import deletePhones from './services/delete'
 
 const App = () => {
 
@@ -21,6 +22,8 @@ const App = () => {
       })
   }, [])
 
+
+  
   const handleNameChange = (event) => {
     setNewName(event.target.value)
     
@@ -35,8 +38,20 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
+  const handleDelete = (id) => {
+    deletePhones(id)
+    .then(() => {
+      return axios.get(baseUrl)
+    })
+    .then(response => {
+      setPersons(response.data)
+    })
+    }
+
   const addName = (event) => {
   event.preventDefault()
+
+
 
   if (persons.some(person => person.name === newName)){
       console.log("Name already exists")
@@ -71,7 +86,7 @@ const App = () => {
         addName={addName}
       />
       <h2>Numbers</h2>
-      <Persons persons={persons} newFilter={newFilter} />
+      <Persons persons={persons} newFilter={newFilter} deletePhones={handleDelete}/>
 
     </div>
   )
