@@ -19,6 +19,16 @@
       "name": "test3",
       "number": "39-44-5323523",
       "id": "wc0XAct-LnI"
+    },
+    {
+      "name": "test2",
+      "number": "12-43-234345",
+      "id": "cWHZq7Coqzk"
+    },
+    {
+      "name": "Ada",
+      "number": "39-44-5323523",
+      "id": "gTK9AgMXVB4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

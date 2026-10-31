@@ -5,6 +5,7 @@ import Persons from './components/Persons'
 import axios from 'axios'
 import addPhone from './services/phones'
 import deletePhones from './services/delete'
+import Notification from './components/Notification'
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [message, setMessage] = useState(null)
 
   const baseUrl = 'http://localhost:3001/persons'
 
@@ -61,6 +63,10 @@ const App = () => {
       addPhone(newName, newPhone)
         .then(response => {
           setPersons(persons.concat(response.data))
+          setMessage(`Added ${response.data.name}`)
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
           setNewName('')
           setNewPhone('')
         })
@@ -71,6 +77,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter
         newFilter={newFilter}
         handleNewFilter={handleNewFilter}
