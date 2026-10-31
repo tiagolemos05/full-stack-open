@@ -3,10 +3,7 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import axios from 'axios'
-
-
-
-
+import addPhone from './services/phones'
 
 const App = () => {
 
@@ -24,20 +21,6 @@ const App = () => {
       })
   }, [])
 
-  const addPhone = () => {
-    const phoneObject = {
-      name: newName,
-      number: newPhone
-    }
-    axios
-      .post(baseUrl, phoneObject)
-      .then(response => {
-      setPersons(persons.concat(response.data))
-      setNewName('')
-      setNewPhone('')
-    })
-  }
-
   const handleNameChange = (event) => {
     setNewName(event.target.value)
     
@@ -47,8 +30,6 @@ const App = () => {
     setNewPhone(event.target.value)
     
   }
-
-
 
   const handleNewFilter = (event) => {
     setNewFilter(event.target.value)
@@ -61,10 +42,13 @@ const App = () => {
       console.log("Name already exists")
       alert(`${newName} is already added to phonebook`)
     }
-  else {
-    addPhone()
-    setNewName('')
-    setNewPhone('')
+    else {
+      addPhone(newName, newPhone)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+          setNewPhone('')
+        })
     }
   }
 

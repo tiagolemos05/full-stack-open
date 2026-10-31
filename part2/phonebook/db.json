@@ -29,6 +29,11 @@
       "name": "test2",
       "number": "39-23-6423122",
       "id": "Z302_0q89iM"
+    },
+    {
+      "name": "test3",
+      "number": "39-44-5323523",
+      "id": "wc0XAct-LnI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
